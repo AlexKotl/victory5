@@ -1,0 +1,14 @@
+{
+    "name": "slicer/victory",
+    "description": "Victory-V camera browser",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Alexander Kotliarov",
+            "email": "slicer256@gmail.com"
+        }
+    ]
+}
