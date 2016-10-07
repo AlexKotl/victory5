@@ -11,9 +11,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
 //    echo $row['filename'] . "\n";
 //}
 
-require '../vendor/autoload.php';
-require '../classes/class_screenshots.php';
-require '../classes/class_database.php';
+require 'vendor/autoload.php';
+require 'classes/class_screenshots.php';
+require 'classes/class_database.php';
 
 // INIT
 
@@ -22,7 +22,7 @@ $config = array(
 
 );
 
-$db = new Database("sqlite:../db/victory.db");
+$db = new Database("sqlite:db/victory.db");
 $screenshots = new \Victory\Screenshots($config['webcam_url']);
 
 $app = new \Slim\App([

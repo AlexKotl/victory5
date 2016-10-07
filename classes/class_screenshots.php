@@ -24,7 +24,7 @@ class Screenshots {
         if ($r) {
             $timestamp = time();
             $filename = date("Y_m_d_H_i") . ".jpg";
-            file_put_contents(__DIR__ . "/../html/upload/screenshots/{$filename}", $r) or die("Cannot download file");
+            file_put_contents(__DIR__ . "/../upload/screenshots/{$filename}", $r) or die("Cannot download file");
             return array(
                 'timestamp' => $timestamp,
                 'filename' => $filename,

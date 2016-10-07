@@ -1,5 +1,5 @@
 .idea
 /vendor
-/html/upload
+/upload
 node_modules
 /db
