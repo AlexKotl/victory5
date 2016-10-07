@@ -19,7 +19,7 @@ require 'classes/class_database.php';
 
 $config = array(
     'webcam_url' => "https://streaming.ivideon.com/preview/live?server=100-6f53fb22b3db5a319ac2e83d472f0ab9&camera=0&sessionId=demo&q=2",
-
+    'time_interval' => 60,
 );
 
 $db = new Database("sqlite:db/victory.db");
@@ -37,7 +37,7 @@ $app->get('/capture', function (Request $request, Response $response) {
 
     // check last time
     $last_timestamp = $this->db->getColumn("select timestamp from screenshots order by id desc limit 1");
-    if (time() - $last_timestamp < 60 * 10) {
+    if (time() - $last_timestamp < 60 * $this->settings['time_interval']) {
         die("Screenshot already retrieved. Come back later");
     }
 
