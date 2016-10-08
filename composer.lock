@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae090dfa1ce20e7a8a97d517e0034df2",
-    "content-hash": "3319d6a65fe4a330684e7f8f6d5326c6",
+    "hash": "c146481be4c7c422061abb04950bc265",
+    "content-hash": "6e595fe8af2f421619a1a760d7287612",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -33,6 +33,50 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30 15:22:37"
+        },
+        {
+            "name": "dww510/phpliteadmin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dww510/phpLiteAdmin.git",
+                "reference": "ff3f7007954c9e6429d69eb54d11cc82e264fd53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dww510/phpLiteAdmin/zipball/ff3f7007954c9e6429d69eb54d11cc82e264fd53",
+                "reference": "ff3f7007954c9e6429d69eb54d11cc82e264fd53",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Wright",
+                    "email": "dww510@gmail.com"
+                }
+            ],
+            "description": "phpLiteAdmin is a web-based SQLite database admin tool written in PHP",
+            "homepage": "https://github.com/dww510/phpLiteAdmin",
+            "keywords": [
+                "composer",
+                "php",
+                "phpLiteAdmin",
+                "sql",
+                "sqlite"
+            ],
+            "time": "2016-03-12 22:46:27"
         },
         {
             "name": "nikic/fast-route",
@@ -247,7 +291,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "dww510/phpliteadmin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

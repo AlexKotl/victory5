@@ -2,8 +2,10 @@
     "name": "slicer/victory",
     "description": "Victory-V camera browser",
     "type": "project",
+    "prefer-stable" : false,
     "require": {
-        "slim/slim": "^3.5"
+        "slim/slim": "^3.5",
+        "dww510/phpliteadmin": "*@dev"
     },
     "authors": [
         {
