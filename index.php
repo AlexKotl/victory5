@@ -14,10 +14,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 require 'classes/class_screenshots.php';
 require 'classes/class_database.php';
+require 'controllers/capture.php';
 
 // INIT
 
 $config = array(
+    'displayErrorDetails' => true,
     'webcam_url' => "https://streaming.ivideon.com/preview/live?server=100-6f53fb22b3db5a319ac2e83d472f0ab9&camera=0&sessionId=demo&q=2",
     'time_interval' => 60,
 );
@@ -31,28 +33,6 @@ $app = new \Slim\App([
     'screenshots' => $screenshots,
 ]);
 
-$app->get('/capture', function (Request $request, Response $response) {
-
-    $response->getBody()->write("<h1>Victory-V webcam capture</h1>");
-
-    // check last time
-    $last_timestamp = $this->db->getColumn("select timestamp from screenshots order by id desc limit 1");
-    if (time() - $last_timestamp < 60 * $this->settings['time_interval']) {
-        die("Screenshot already retrieved. Come back later");
-    }
-
-    $screenshot = $this->screenshots->download();
-
-    if ($screenshot) {
-        $this->db->query("INSERT INTO `screenshots` 
-            (`filename`,`timestamp`,`flag`) 
-            VALUES ('{$screenshot['filename']}', '{$screenshot['timestamp']}', '1');");
-    }
-    else {
-        die("Cannot download screenshot");
-    }
-
-    return $response;
-});
+$app->get('/capture', '\Capture:capture');
 
 $app->run();
