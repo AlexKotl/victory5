@@ -15,6 +15,7 @@ require 'vendor/autoload.php';
 require 'classes/class_screenshots.php';
 require 'classes/class_database.php';
 require 'controllers/capture.php';
+require 'controllers/api.php';
 
 // INIT
 
@@ -34,5 +35,7 @@ $app = new \Slim\App([
 ]);
 
 $app->get('/capture', '\Capture:capture');
+$app->get('/api', '\API:legend');
+$app->get('/api/list', '\API:getScreenshots');
 
 $app->run();
