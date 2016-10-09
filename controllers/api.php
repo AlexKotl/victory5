@@ -11,11 +11,14 @@ class API {
     protected $ci;
     protected $db;
     protected $data;
+    public $path;
     
     public function __construct($ci) {
         
         $this->ci = $ci;
         $this->db = $ci->db;
+
+        $this->path = __DIR__ . "/../upload/screenshots";
 
         $this->data = array();
         
@@ -23,7 +26,7 @@ class API {
 
     public function legend() {
 
-
+       // var_dump(\Slim\Slim::getInstance());
 
     }
     
@@ -31,13 +34,18 @@ class API {
         
         $res = $this->db->query("SELECT * from screenshots where flag=1 order by id");
         while ($row = $res->fetch()) {
-            $this->data[] = $row;
+
+            if (file_exists($this->path . "/" . $row['filename'])) {
+                $this->data[] = $row;
+            }
+
         }
         
     }
 
     public function __destruct() {
 
+        header('Content-Type: application/json');
         echo json_encode($this->data);
 
     }

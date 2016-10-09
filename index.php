@@ -25,6 +25,23 @@ $config = array(
     'time_interval' => 60,
 );
 
+$routes = array(
+    '/capture' => array(
+        'action' => '\Capture:capture',
+        'description' => '',
+    ),
+
+    '/api' => array(
+        'action' => '\API:legend',
+        'description' => '',
+    ),
+
+    '/api/list' => array(
+        'action' => '\API:getScreenshots',
+        'description' => '',
+    )
+);
+
 $db = new Database("sqlite:db/victory.db");
 $screenshots = new \Victory\Screenshots($config['webcam_url']);
 
@@ -32,10 +49,13 @@ $app = new \Slim\App([
     "settings" => $config,
     'db' => $db,
     'screenshots' => $screenshots,
+    'routes' => $routes,
 ]);
 
-$app->get('/capture', '\Capture:capture');
-$app->get('/api', '\API:legend');
-$app->get('/api/list', '\API:getScreenshots');
+// configure routes
+foreach ($routes as $url => $data) {
+    $app->get($url, $data['action']);
+}
+
 
 $app->run();
