@@ -4,13 +4,6 @@ ini_set('display_errors', 1);
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-//
-//$res = $db->query('SELECT * FROM screenshots');
-//while ($row = $res->fetch())
-//{
-//    echo $row['filename'] . "\n";
-//}
-
 require 'vendor/autoload.php';
 require 'classes/class_screenshots.php';
 require 'classes/class_database.php';
@@ -28,17 +21,17 @@ $config = array(
 $routes = array(
     '/capture' => array(
         'action' => '\Capture:capture',
-        'description' => '',
+        'description' => 'Download and save picture from webcamera',
     ),
 
     '/api' => array(
         'action' => '\API:legend',
-        'description' => '',
+        'description' => 'Show all API functions',
     ),
 
     '/api/list' => array(
         'action' => '\API:getScreenshots',
-        'description' => '',
+        'description' => 'Get all screenshot records',
     )
 );
 

@@ -26,7 +26,11 @@ class API {
 
     public function legend() {
 
-       // var_dump(\Slim\Slim::getInstance());
+        $this->data = '';
+
+        foreach ($this->ci->routes as $k => $v) {
+            $this->data .= "<h2>{$k}</h2> {$v['description']}";
+        }
 
     }
     
@@ -45,8 +49,15 @@ class API {
 
     public function __destruct() {
 
-        header('Content-Type: application/json');
-        echo json_encode($this->data);
+        if (is_array($this->data)) {
+            header('Content-Type: application/json');
+            echo json_encode($this->data);
+        }
+
+        else {
+            echo $this->data;
+        }
+
 
     }
 
