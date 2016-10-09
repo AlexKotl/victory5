@@ -2,4 +2,6 @@
 /vendor
 /upload
 node_modules
+bower_components
 /db
+/dist
