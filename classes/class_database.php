@@ -9,14 +9,14 @@
 class Database {
     private $pdo;
     
-    public function __construct($connection) {
+    public function __construct($config) {
 
         $options = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
 
-        $this->pdo = new PDO($connection, "root", "root", $options);
+        $this->pdo = new PDO($config['connection'], $config['user'], $config['password'], $options);
 
     }
     
