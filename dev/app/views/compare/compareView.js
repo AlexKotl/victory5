@@ -1,7 +1,15 @@
 export default class compareView {
 
-    constructor() {
+    constructor(target) {
         
+        this.target = target
+        
+    }
+
+    render() {
+
+        document.getElementById(this.target).innerHTML = "Works!"
+
     }
 
 }

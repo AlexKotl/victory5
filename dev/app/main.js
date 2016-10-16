@@ -1,3 +1,4 @@
-import config from './config'
+import CompareController from './controllers/compareController'
 
-const compare = new CompareController();
+const compare = new CompareController()
+compare.show()
