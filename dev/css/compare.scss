@@ -17,7 +17,14 @@
             width: 160px;
             background-color: transparent;
             border: 0;
-            overflow: auto;;
+            overflow: auto;
+            font-size: 14px;
+            outline: 0;
+
+            option {
+                padding: 5px 10px;
+                text-align: center;
+            }
         }
     }
 

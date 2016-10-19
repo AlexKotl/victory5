@@ -10,7 +10,7 @@ export default class compareView {
 
         const add = (str, val) => {
             const date = new Date(val.timestamp * 1000)
-            return str += `<option> ${ date.getDate() }/${ date.getMonth() }/${ date.getFullYear() } ${ date.getHours() }:${ date.getMinutes() } </option>`
+            return str += `<option value="${ val.filename }"> ${ date.getDate() }/${ date.getMonth() }/${ date.getFullYear() } ${ date.getHours() }:${ date.getMinutes() } </option>`
         }
 
         return data.reduce(add, '')
@@ -28,7 +28,7 @@ export default class compareView {
         document.getElementById(this.target).innerHTML = `
             <div class="compareBlock">
                 <div class="sideSelect left">
-                    <select size="2">
+                    <select size="2" id="picture1">
                         ${ this.createSelectFromData(data) }
                     </select>
                 </div>
@@ -36,7 +36,7 @@ export default class compareView {
                 <div id="display"></div>
                 
                 <div class="sideSelect right">
-                    <select size="2">
+                    <select size="2" id="picture2">
                         ${ this.createSelectFromData(data) }
                     </select>
                 </div>

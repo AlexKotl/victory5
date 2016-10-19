@@ -23,11 +23,11 @@ export default class CompareController {
                 [
                     {
                         src: '/images/stuff/sample1.jpg',
-                        label: '2009'
+                        label: 'До'
                     },
                     {
                         src: '/images/stuff/sample2.jpg',
-                        label: '2014'
+                        label: 'После'
                     }
                 ],
                 {
@@ -38,9 +38,27 @@ export default class CompareController {
                     makeResponsive: false
                 }
             );
+            //this.slider._onLoaded();
 
-        });
+            // attach events
+            document.getElementById('picture1').addEventListener('change', this.changePicture.bind(this))
+            document.getElementById('picture2').addEventListener('change', this.changePicture.bind(this))
 
+        })
+
+
+
+
+    }
+
+    changePicture(e) {
+
+        if (e.target.id == 'picture1') {
+            this.slider.imgBefore.image.src = '/upload/screenshots/' + e.target.value
+        }
+        else {
+            this.slider.imgAfter.image.src = '/upload/screenshots/' + e.target.value
+        }
 
     }
 
