@@ -16,7 +16,14 @@ export default class compareView {
         return data.reduce(add, '')
     }
 
+    createImgTag(obj) {
+        return `<img src="/upload/screenshots/${ obj.filename }" alt="" />`
+    }
+
     render(data) {
+
+        // ${ this.createImgTag(data[0]) }
+        // ${ this.createImgTag(data[data.length-1]) }
 
         document.getElementById(this.target).innerHTML = `
             <div class="compareBlock">
