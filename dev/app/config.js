@@ -1,5 +1,5 @@
 const config = {
-    url: 'localhost'
+    url: 'http://victory'
 }
 
 export default config

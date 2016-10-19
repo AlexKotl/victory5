@@ -3,15 +3,22 @@ body {
 }
 
 section.header {
-    width: 600px;
+    width: 1200px;
     margin: 100px auto;
+
 }
 
 section.main {
-    width: 600px;
+    width: 1000px;
     margin: 100px auto;
+}
+
+div {
+    box-sizing: border-box;
 }
 
 #application {
 
 }
+
+@import "./compare.scss";

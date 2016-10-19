@@ -20,14 +20,20 @@ module.exports = {
     ] : [
         new CopyWebpackPlugin([{
             from: './dev/index.html', to: './dist/index.html'
-        },{
-            from: './dev/css/style.css', to: './dist/css/style.css'
-        }])
+        }
+        ])
     ],
 
     module: {
         loaders: [
-            { test: /\.js$/, loader: "babel?presets[]=es2015" }
+            {
+                test: /\.js$/,
+                loader: "babel?presets[]=es2015"
+            },
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass"
+            }
         ]
     },
 
