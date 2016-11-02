@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './dev/app/main',
+    entry: './src/index.jsx',
 
     output: {
-        filename: './dist/app.js'
+        filename: './build/app.js'
     },
 
     plugins: NODE_ENV === 'production' ? [
@@ -19,7 +19,7 @@ module.exports = {
         })
     ] : [
         new CopyWebpackPlugin([{
-            from: './dev/index.html', to: './dist/index.html'
+            from: './src/index.html', to: './build/index.html'
         }
         ])
     ],
@@ -27,8 +27,8 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
-                loader: "babel?presets[]=es2015"
+                test: /\.(js|jsx)$/,
+                loader: "babel-loader"
             },
             {
                 test: /\.scss$/,
