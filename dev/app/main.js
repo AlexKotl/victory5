@@ -3,3 +3,4 @@ require("./../css/style.scss");
 
 const compare = new CompareController()
 compare.show()
+
