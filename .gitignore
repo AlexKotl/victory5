@@ -6,3 +6,4 @@ bower_components
 /db
 config.production.php
 /dist
+/build
