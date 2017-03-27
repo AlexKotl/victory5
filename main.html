@@ -32,7 +32,18 @@
 	</div>
 	
 	<main class="mdl-layout__content">
-		<div id='app'>{{test}}</div>
+		<div id='app'>
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+				<input type="checkbox" id="is_night" class="mdl-switch__input" >
+				<span class="mdl-switch__label">Ночные фото</span>
+			</label>
+		
+			<p>
+			Перетащите ползунок для просмотра истории:
+			<input class="mdl-slider mdl-js-slider" type="range"  min="0" max="100" value="100" tabindex="0">
+			
+			{{test}}
+		</div>
 	</main>
 </div>
 
