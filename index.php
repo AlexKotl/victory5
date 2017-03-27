@@ -9,11 +9,17 @@ require 'classes/class_screenshots.php';
 require 'classes/class_database.php';
 require 'controllers/capture.php';
 require 'controllers/api.php';
+require 'controllers/site.php';
 require 'config/config.' . ($_SERVER['SERVER_NAME'] === 'victory' ? 'dev' : 'production') . '.php';
 
 // INIT
 
 $routes = array(
+	'/' => array(
+		'action' => '\Site:index',
+		'description' => 'Display frontend',
+	),
+	
     '/capture' => array(
         'action' => '\Capture:capture',
         'description' => 'Download and save picture from webcamera',
