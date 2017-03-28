@@ -1,3 +1,28 @@
 #app {
 	padding: 10px 20px;
 }
+
+#display {
+	
+}
+
+#display {
+	margin: 20px 0 0 0;
+	padding: 0;	
+}
+
+#display li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#display img {
+	width: 100%;
+}
+
+.loadingBar {
+	text-align: center;
+	font-size: 14px;
+	padding: 50px 20px;
+}

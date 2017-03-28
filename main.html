@@ -38,17 +38,36 @@
 				<span class="mdl-switch__label">Ночные фото</span>
 			</label>
 		
-			<p>
-			Перетащите ползунок для просмотра истории:
-			<input class="mdl-slider mdl-js-slider" type="range"  min="0" max="100" value="100" tabindex="0">
+			<div v-if="images_loaded === total_images">
+				Перетащите ползунок для просмотра истории:
+				
+				<input class="mdl-slider mdl-js-slider" type="range"  
+					min="0" 
+					:max="total_images - 1" 
+					v-model="current_frame"
+				>
+			</div>
 			
-			{{test}}
+			<div class='loadingBar' v-else>
+				Загружается... {{ images_loaded }} / {{ total_images }}
+			</div>
+			
+			<ul id='display'>
+				<li v-for="frame of frames">
+					<img :src="frame.url" v-show="frame.no == current_frame" @load="frameLoaded">
+				</li>
+			</ul>
+			
+			<p>Кадр: {{ current_frame }} <br>
+			
+			
 		</div>
 	</main>
 </div>
 
 
 <script src="/node_modules/vue/dist/vue.min.js" type="text/javascript"></script>
+<script src="/node_modules/vue-resource/dist/vue-resource.min.js" type="text/javascript"></script>
 <script src="/app/app.js" type="text/javascript"></script>
 	
 </body>
