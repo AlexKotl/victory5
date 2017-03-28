@@ -1,3 +1,7 @@
+var config = {
+	api_host: 'http://cam.figli-migli.net'
+};
+
 new Vue({
 	el: '#app',
 	
@@ -15,12 +19,12 @@ new Vue({
 	},
 	
 	created: function() {
-		this.$http.get('/api/list').then(responce => {
+		this.$http.get(config.api_host + '/api/list').then(responce => {
 			var i = 0;
 			for (var frame of responce.body) {
 				this.frames.push({
 					no: i,
-					url: '/upload/screenshots/' + frame.filename
+					url: config.api_host + '/upload/screenshots/' + frame.filename
 				});
 				i++;
 			}
