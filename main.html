@@ -5,7 +5,7 @@
 
 	<link href="/app/css/style.css" rel="stylesheet">
 	<link href="/node_modules/material-design-lite/material.css" rel="stylesheet">
-	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script src="/node_modules/material-design-lite/material.min.js"></script>
 	
 	
@@ -46,6 +46,26 @@
 					:max="total_images - 1" 
 					v-model="current_frame"
 				>
+				
+				<div class="playControls">
+					
+					<button @click="next_frame(-1)" class="mdl-button mdl-js-button mdl-button--fab ">
+						<i class="material-icons">navigate_before</i>
+					</button>
+					
+					<button v-show="!is_playing" @click="play(true)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+						<i class="material-icons">play_arrow</i>
+					</button>
+					
+					<button v-show="is_playing" @click="stop" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+						<i class="material-icons">pause</i>
+					</button>
+					
+					<button @click="next_frame(1)" class="mdl-button mdl-js-button mdl-button--fab ">
+						<i class="material-icons">navigate_next</i>
+					</button>
+					
+				</div>
 			</div>
 			
 			<div class='loadingBar' v-else>
