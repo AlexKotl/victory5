@@ -38,6 +38,10 @@ class API {
         
         $res = $this->db->query("SELECT * from screenshots where flag=1 order by id");
         while ($row = $res->fetch()) {
+	        
+	        $hour = (int)date('G', $row['timestamp']);
+	        if ($_REQUEST['time']=='day' && ($hour>17 || $hour<8)) continue;
+	        if ($_REQUEST['time']=='night' && ($hour>7 && $hour<19)) continue;
 
             if (file_exists($this->path . "/" . $row['filename'])) {
                 $this->data[] = $row;

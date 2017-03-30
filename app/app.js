@@ -1,5 +1,6 @@
 var config = {
-	api_host: 'http://cam.figli-migli.net'
+	api_host: 'http://cam.figli-migli.net',
+	api_host: '',
 };
 
 new Vue({
@@ -50,7 +51,8 @@ new Vue({
 			for (var frame of responce.body) {
 				this.frames.push({
 					no: i,
-					url: config.api_host + '/upload/screenshots/' + frame.filename
+					url: config.api_host + '/upload/screenshots/' + frame.filename,
+					timestamp: frame.timestamp
 				});
 				i++;
 			}
