@@ -35,8 +35,11 @@ class API {
     }
     
     public function getScreenshots() {
+        if ($_REQUEST['period'] == 30) {
+	        $add_query = " and timestamp > " . (time() - 60*60*24 * 30);
+        }
         
-        $res = $this->db->query("SELECT * from screenshots where flag=1 order by id");
+        $res = $this->db->query("SELECT * from screenshots where flag=1 {$add_query} order by id");
         while ($row = $res->fetch()) {
 	        
 	        $hour = (int)date('G', $row['timestamp']);

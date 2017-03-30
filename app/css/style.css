@@ -31,3 +31,16 @@
 .playControls {
 	text-align: center;
 }
+
+.float-left {
+	float:left;
+}
+
+.float-right {
+	float: right;
+}
+
+.half-width {
+	width: 50%;
+	box-sizing: border-box;
+}

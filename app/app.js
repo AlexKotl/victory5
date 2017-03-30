@@ -1,6 +1,6 @@
 var config = {
 	api_host: 'http://cam.figli-migli.net',
-	api_host: '',
+	//api_host: '',
 };
 
 new Vue({
@@ -13,6 +13,10 @@ new Vue({
 		current_frame: 0,
 		is_playing: false,
 		play_speed: 200, // delay between frames switching
+		settings: { // misc user settings
+			day_time: 'day',
+			period: '30',
+		}, 
 	},
 	
 	methods: {
@@ -41,23 +45,32 @@ new Vue({
 			if (new_val > 0 && new_val < this.total_images) {
 				this.current_frame = new_val;
 			}
+		},
+		
+		callApi: function() {
+			this.total_images = 0;
+			this.images_loaded = 0;
+			this.current_frame = 0;
+			this.frames = [];
+			
+			this.$http.get(config.api_host + '/api/list?time=' + this.settings.day_time + '&period=' + this.settings.period).then(responce => {
+				var i = 0;
+				for (var frame of responce.body) {
+					this.frames.push({
+						no: i,
+						url: config.api_host + '/upload/screenshots/' + frame.filename,
+						timestamp: frame.timestamp
+					});
+					i++;
+				}
+				this.total_images = this.frames.length;
+			}, console.error);
 		}
 	},
 	
 	created: function() {
 		//return true;
-		this.$http.get(config.api_host + '/api/list').then(responce => {
-			var i = 0;
-			for (var frame of responce.body) {
-				this.frames.push({
-					no: i,
-					url: config.api_host + '/upload/screenshots/' + frame.filename,
-					timestamp: frame.timestamp
-				});
-				i++;
-			}
-			this.total_images = this.frames.length;
-		}, console.error);
+		this.callApi();
 	}
 	
 });

@@ -34,13 +34,36 @@
 	
 	<main class="mdl-layout__content">
 		<div id='app'>
-			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-				<input type="checkbox" id="is_night" class="mdl-switch__input" >
-				<span class="mdl-switch__label">Ночные фото</span>
-			</label>
+			
+			<div class='float-left half-width'>
+				Время снимков:<br>
+				<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+					<input type="radio" id="option-1" class="mdl-radio__button" name="day_time" value="day" checked @change="callApi" v-model="settings.day_time">
+					<span class="mdl-radio__label">День</span>
+				</label> 
+				<br>
+				<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+					<input type="radio" id="option-2" class="mdl-radio__button" name="day_time" value="night" @change="callApi" v-model="settings.day_time">
+					<span class="mdl-radio__label">Ночь</span>
+				</label>
+			</div>
+			
+			<div class='float-right half-width'>
+				Период: <br>
+				<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+					<input type="radio" id="option-3" class="mdl-radio__button" name="period" value="30" checked @change="callApi" v-model="settings.period">
+					<span class="mdl-radio__label">Последние 30 дней</span>
+				</label>
+				<br>
+				<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+					<input type="radio" id="option-4" class="mdl-radio__button" name="period" value="all" @change="callApi" v-model="settings.period">
+					<span class="mdl-radio__label">Все время</span>
+				</label>
+			</div>
 		
+			<br>
 			<div v-if="images_loaded === total_images">
-				Перетащите ползунок для просмотра истории:
+				Перетащите ползунок для просмотра истории: <br>
 				
 				<input class="mdl-slider mdl-js-slider" type="range"  
 					min="0" 
@@ -70,6 +93,7 @@
 			</div>
 			
 			<div class='loadingBar' v-else>
+				<div id="progressBar" class="mdl-progress mdl-js-progress"></div> <br>
 				Загружается... {{ images_loaded }} / {{ total_images }}
 			</div>
 			

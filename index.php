@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE);
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -32,7 +33,7 @@ $routes = array(
 
     '/api/list' => array(
         'action' => '\API:getScreenshots',
-        'description' => 'Get all screenshot records',
+        'description' => 'Get all screenshot records. Parameters: "period" (30 / all), "time" (day / night)',
     )
 );
 
