@@ -3,20 +3,21 @@ var config = {
 	//api_host: '',
 };
 
-new Vue({
-	el: '#app',
-	
-	data: {
-		frames: [],
-		total_images: 0,
-		images_loaded: 0,
-		current_frame: 0,
-		is_playing: false,
-		play_speed: 200, // delay between frames switching
-		settings: { // misc user settings
-			day_time: 'day',
-			period: '30',
-		}, 
+Vue.component('camera-player', {
+	template: '#player-template',
+	data: function() {
+		return {
+			frames: [],
+			total_images: 0,
+			images_loaded: 0,
+			current_frame: 0,
+			is_playing: false,
+			play_speed: 200, // delay between frames switching
+			settings: { // misc user settings
+				day_time: 'day',
+				period: '30',
+			}, 
+		}
 	},
 	
 	methods: {
@@ -69,9 +70,15 @@ new Vue({
 	},
 	
 	created: function() {
-		//return true;
 		this.callApi();
 	}
-	
+});
+
+Vue.component('text-page', {
+	template: "<div class='text-page'><slot></slot></div>",
+})
+
+new Vue({
+	el: '#app'
 });
 
