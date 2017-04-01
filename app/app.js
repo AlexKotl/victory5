@@ -74,15 +74,18 @@ var playerComponent = Vue.component('camera-player', {
 	}
 });
 
-var textPageComponent = Vue.component('text-page', {
-	template: "<div class='text-page'>Text page here<slot></slot></div>"
-})
+var textPageAbout = {
+	template: "#about-page"
+};
+var textPageHouse = {
+	template: "#house-page"
+};
 
 var router = new VueRouter({
 	routes: [
 		{ path: '/', component: playerComponent },
-		{ path: '/about', component: textPageComponent },
-		{ path: '/house', component: textPageComponent }
+		{ path: '/about', component: textPageAbout },
+		{ path: '/house', component: textPageHouse }
 	]
 })
 
