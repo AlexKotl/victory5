@@ -8,7 +8,7 @@
 
 class Site {
 	public function index() {
-		echo file_get_contents(dirname(__FILE__).'/../main.html');
+		echo file_get_contents(dirname(__FILE__).'/../app/index.html');
 	}
 }
 ?>
