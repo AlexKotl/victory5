@@ -3,7 +3,7 @@ var config = {
 	//api_host: '',
 };
 
-Vue.component('camera-player', {
+var playerComponent = Vue.component('camera-player', {
 	template: '#player-template',
 	data: function() {
 		return {
@@ -74,11 +74,20 @@ Vue.component('camera-player', {
 	}
 });
 
-Vue.component('text-page', {
-	template: "<div class='text-page'><slot></slot></div>",
+var textPageComponent = Vue.component('text-page', {
+	template: "<div class='text-page'>Text page here<slot></slot></div>"
 })
 
-new Vue({
-	el: '#app'
+var router = new VueRouter({
+	routes: [
+		{ path: '/', component: playerComponent },
+		{ path: '/about', component: textPageComponent },
+		{ path: '/house', component: textPageComponent }
+	]
+})
+
+var app = new Vue({
+	el: '#app',
+	router: router
 });
 

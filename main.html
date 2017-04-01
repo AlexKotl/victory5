@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div id='app' class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 	<header class="mdl-layout__header">
 		<div class="mdl-layout__header-row">
 			<span class="mdl-layout-title">Victory-V история строительства дома</span>
@@ -24,113 +24,105 @@
 		</div>
 	</header>
 	<div class="mdl-layout__drawer">
-	<span class="mdl-layout-title">Victory-V</span>
-	<nav class="mdl-navigation">
-		<a class="mdl-navigation__link" href="/">Главная</a>		
-		<a class="mdl-navigation__link" href="">Про дом</a>
-		<a class="mdl-navigation__link" href="">О сайте</a>
-	</nav>
+		<span class="mdl-layout-title">Victory-V</span>
+		
+		<nav class="mdl-navigation">
+			<router-link to="/" class="mdl-navigation__link">Главная</router-link>
+			<router-link to="/house" class="mdl-navigation__link">Про дом</router-link>
+			<router-link to="/about" class="mdl-navigation__link">О сайте</router-link>
+		</nav>
 	</div>
 	
 	
 	
 	
 	
-	<main class="mdl-layout__content">
-		<div id='app'>
-			
-			<camera-player></camera-player>
-			<text-page>Hello!!!</text-page>
-			
-		</div>
+	<main class="mdl-layout__content mainContent">
+			<router-link to="/">Router main</router-link>
+			<router-view></router-view>		
 	</main>
 	
 	
 </div>
 
-<template id='player-template2'>
-	<div>
-		<h1>Some test</h1>
-	</div>
-</template>
-
 <template id='player-template'>
 	<div>
-	<div class='float-left half-width'>
-		Время снимков:<br>
-		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-			<input type="radio" id="option-1" class="mdl-radio__button" name="day_time" value="day" checked @change="callApi" v-model="settings.day_time">
-			<span class="mdl-radio__label">День</span>
-		</label> 
-		<br>
-		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-			<input type="radio" id="option-2" class="mdl-radio__button" name="day_time" value="night" @change="callApi" v-model="settings.day_time">
-			<span class="mdl-radio__label">Ночь</span>
-		</label>
-	</div>
-	
-	<div class='float-right half-width'>
-		Период: <br>
-		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-			<input type="radio" id="option-3" class="mdl-radio__button" name="period" value="30" checked @change="callApi" v-model="settings.period">
-			<span class="mdl-radio__label">Последние 30 дней</span>
-		</label>
-		<br>
-		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-			<input type="radio" id="option-4" class="mdl-radio__button" name="period" value="all" @change="callApi" v-model="settings.period">
-			<span class="mdl-radio__label">Все время</span>
-		</label>
-	</div>
-
-	<br>
-	<div v-if="images_loaded === total_images">
-		Перетащите ползунок для просмотра истории: <br>
-		
-		<input class="mdl-slider mdl-js-slider" type="range"  
-			min="0" 
-			:max="total_images - 1" 
-			v-model="current_frame"
-		>
-		
-		<div class="playControls">
-			
-			<button @click="next_frame(-1)" class="mdl-button mdl-js-button mdl-button--fab ">
-				<i class="material-icons">navigate_before</i>
-			</button>
-			
-			<button v-show="!is_playing" @click="play(true)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-				<i class="material-icons">play_arrow</i>
-			</button>
-			
-			<button v-show="is_playing" @click="stop" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-				<i class="material-icons">pause</i>
-			</button>
-			
-			<button @click="next_frame(1)" class="mdl-button mdl-js-button mdl-button--fab ">
-				<i class="material-icons">navigate_next</i>
-			</button>
-			
+		<div class='float-left half-width'>
+			Время снимков:<br>
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+				<input type="radio" id="option-1" class="mdl-radio__button" name="day_time" value="day" checked @change="callApi" v-model="settings.day_time">
+				<span class="mdl-radio__label">День</span>
+			</label> 
+			<br>
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+				<input type="radio" id="option-2" class="mdl-radio__button" name="day_time" value="night" @change="callApi" v-model="settings.day_time">
+				<span class="mdl-radio__label">Ночь</span>
+			</label>
 		</div>
+		
+		<div class='float-right half-width'>
+			Период: <br>
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+				<input type="radio" id="option-3" class="mdl-radio__button" name="period" value="30" checked @change="callApi" v-model="settings.period">
+				<span class="mdl-radio__label">Последние 30 дней</span>
+			</label>
+			<br>
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+				<input type="radio" id="option-4" class="mdl-radio__button" name="period" value="all" @change="callApi" v-model="settings.period">
+				<span class="mdl-radio__label">Все время</span>
+			</label>
+		</div>
+	
+		<br>
+		<div v-if="images_loaded === total_images">
+			Перетащите ползунок для просмотра истории: <br>
+			
+			<input class="mdl-slider mdl-js-slider" type="range"  
+				min="0" 
+				:max="total_images - 1" 
+				v-model="current_frame"
+			>
+			
+			<div class="playControls">
+				
+				<button @click="next_frame(-1)" class="mdl-button mdl-js-button mdl-button--fab ">
+					<i class="material-icons">navigate_before</i>
+				</button>
+				
+				<button v-show="!is_playing" @click="play(true)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+					<i class="material-icons">play_arrow</i>
+				</button>
+				
+				<button v-show="is_playing" @click="stop" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+					<i class="material-icons">pause</i>
+				</button>
+				
+				<button @click="next_frame(1)" class="mdl-button mdl-js-button mdl-button--fab ">
+					<i class="material-icons">navigate_next</i>
+				</button>
+				
+			</div>
+		</div>
+		
+		<div class='loadingBar' v-else>
+			<div id="progressBar" class="mdl-progress mdl-js-progress"></div> <br>
+			Загружается... {{ images_loaded }} / {{ total_images }}
+		</div>
+		
+		<ul id='display'>
+			<li v-for="frame of frames">
+				<img :src="frame.url" v-show="frame.no == current_frame" @load="frameLoaded">
+			</li>
+		</ul>
+		
+		<p>Кадр: {{ current_frame }} <br></p>
 	</div>
 	
-	<div class='loadingBar' v-else>
-		<div id="progressBar" class="mdl-progress mdl-js-progress"></div> <br>
-		Загружается... {{ images_loaded }} / {{ total_images }}
-	</div>
-	
-	<ul id='display'>
-		<li v-for="frame of frames">
-			<img :src="frame.url" v-show="frame.no == current_frame" @load="frameLoaded">
-		</li>
-	</ul>
-	
-	<p>Кадр: {{ current_frame }} <br></p>
-	</div>
 </template>
 
 
 <script src="/node_modules/vue/dist/vue.min.js" type="text/javascript"></script>
-<!-- <script src="/node_modules/vue-router/dist/vue-router.min.js" type="text/javascript"></script> -->
+<script src="/node_modules/vue-router/dist/vue-router.min.js" type="text/javascript"></script>
 <script src="/node_modules/vue-resource/dist/vue-resource.min.js" type="text/javascript"></script>
 <script src="/app/app.js" type="text/javascript"></script>
 
